@@ -23,7 +23,16 @@ public class TrainControllerImpl implements TrainController {
             }
 		}
 
-		enforceSpeedLimit();
+		// Call enforceSpeedLimit() periodically with a threaded timer
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("TimerTask run() called");
+				enforceSpeedLimit();
+			}
+		};
+		Timer timer = new Timer("MyTimer"); //create a new Timer
+		timer.scheduleAtFixedRate(timerTask, 0, 3000); //this line starts the timer at the same time its executed
 	}
 
 	public void controlTrain() {
