@@ -2,6 +2,9 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
@@ -23,8 +26,7 @@ public class TrainControllerImpl implements TrainController {
 		enforceSpeedLimit();
 	}
 
-	public void controlTrain()
-    {
+	public void controlTrain() {
                 Timer timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
